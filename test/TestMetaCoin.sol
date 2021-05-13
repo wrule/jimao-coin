@@ -4,7 +4,7 @@ import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/JimaoCoin.sol";
 
-contract TestMetaCoin {
+contract TestJimaoCoin {
 
   function testInitialBalanceUsingDeployedContract() public {
     JimaoCoin meta = JimaoCoin(DeployedAddresses.JimaoCoin());
@@ -14,7 +14,7 @@ contract TestMetaCoin {
     Assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 JimaoCoin initially");
   }
 
-  function testInitialBalanceWithNewMetaCoin() public {
+  function testInitialBalanceWithNewJimaoCoin() public {
     JimaoCoin meta = new JimaoCoin();
 
     uint expected = 10000;
