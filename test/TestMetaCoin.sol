@@ -7,19 +7,19 @@ import "../contracts/JimaoCoin.sol";
 contract TestJimaoCoin {
 
   function testInitialBalanceUsingDeployedContract() public {
-    JimaoCoin meta = JimaoCoin(DeployedAddresses.JimaoCoin());
+    JimaoCoin jimao = JimaoCoin(DeployedAddresses.JimaoCoin());
 
     uint expected = 10000;
 
-    Assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 JimaoCoin initially");
+    Assert.equal(jimao.getBalance(tx.origin), expected, "Owner should have 10000 JimaoCoin initially");
   }
 
   function testInitialBalanceWithNewJimaoCoin() public {
-    JimaoCoin meta = new JimaoCoin();
+    JimaoCoin jimao = new JimaoCoin();
 
     uint expected = 10000;
 
-    Assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 JimaoCoin initially");
+    Assert.equal(jimao.getBalance(tx.origin), expected, "Owner should have 10000 JimaoCoin initially");
   }
 
 }
