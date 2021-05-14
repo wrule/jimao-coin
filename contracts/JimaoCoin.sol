@@ -59,4 +59,12 @@ contract JimaoCoin {
 	{
 		emit Log("hello world");
 	}
+
+	function test()
+	public
+	{
+		for (uint i = 0; i < 100; i++) {
+			emit Log("hello world");
+		}
+	}
 }
