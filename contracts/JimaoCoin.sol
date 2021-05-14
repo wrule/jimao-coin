@@ -9,27 +9,46 @@ import "./ConvertLib.sol";
 // token, see: https://github.com/ConsenSys/Tokens. Cheers!
 
 contract JimaoCoin {
+	// 地址余额HashMap
 	mapping (address => uint) balances;
 
-	event Transfer(address indexed _from, address indexed _to, uint256 _value);
+	// 事件声明
+	event Transfer(
+		address indexed _from,
+		address indexed _to,
+		uint256 _value
+	);
 
+	// 构造函数
+	// 给tx.origin充值10000个币
 	constructor() public {
 		balances[tx.origin] = 10000;
 	}
 
-	function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
-		if (balances[msg.sender] < amount) return false;
+	// 发送币到某一个账户
+	function sendCoin(address receiver, uint amount)
+	public returns(bool sufficient)
+	{
+		if (balances[msg.sender] < amount) {
+			return false;
+		}
 		balances[msg.sender] -= amount;
 		balances[receiver] += amount;
 		emit Transfer(msg.sender, receiver, amount);
 		return true;
 	}
 
-	function getBalanceInEth(address addr) public view returns(uint){
-		return ConvertLib.convert(getBalance(addr),2);
+	// 获取某个账户下ETH表示的余额
+	function getBalanceInEth(address addr)
+	public view returns(uint)
+	{
+		return ConvertLib.convert(getBalance(addr), 2);
 	}
 
-	function getBalance(address addr) public view returns(uint) {
+	// 获取某个账户下的余额
+	function getBalance(address addr)
+	public view returns(uint)
+	{
 		return balances[addr];
 	}
 }
