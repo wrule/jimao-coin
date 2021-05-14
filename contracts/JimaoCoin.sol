@@ -19,6 +19,8 @@ contract JimaoCoin {
 		uint256 _value
 	);
 
+	event Log(string text);
+
 	// 构造函数
 	// 给tx.origin充值10000个币
 	constructor() public {
@@ -50,5 +52,11 @@ contract JimaoCoin {
 	public view returns(uint)
 	{
 		return balances[addr];
+	}
+
+	function helloWorld()
+	public
+	{
+		emit Log("hello world");
 	}
 }
